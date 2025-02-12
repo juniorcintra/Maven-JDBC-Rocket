@@ -2,7 +2,7 @@ public class SistemaCadastro {
     public static void main(String[] args) {
         FabricaConexao.conectar();
         CadastroRepository repository = new CadastroRepository();
-        Cadastro cadastro = repository.buscar(1);
+        Cadastro cadastro = repository.buscar(10);
         if (cadastro != null) {
             System.out.println(cadastro.getId() + " " + cadastro.getNome());
         }
