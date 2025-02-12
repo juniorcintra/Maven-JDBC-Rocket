@@ -1,4 +1,5 @@
 public class Cadastro {
+    private Integer id;
     private String nome;
     private Integer idade;
 
@@ -16,5 +17,13 @@ public class Cadastro {
 
     public void setIdade(Integer idade) {
         this.idade = idade;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
