@@ -59,8 +59,8 @@ public class CadastroRepository {
         List<Cadastro> lista = new ArrayList<>();
         try {
             String sql = "SELECT * FROM public.tab_cadastro";
-            PreparedStatement statement = conexao.prepareStatement(sql);
-            ResultSet result = statement.executeQuery();
+            PreparedStatement pst = conexao.prepareStatement(sql);
+            ResultSet result = pst.executeQuery();
             while (result.next()) {
                 Integer id = result.getInt("id");
                 String nome = result.getString("nome");
@@ -79,7 +79,25 @@ public class CadastroRepository {
         return lista;
     }
 
-    public Cadastro buscar() {
-        return null;
+    public Cadastro buscar(Integer id) {
+        Cadastro cadastro = null;
+        try {
+            String sql = "SELECT * FROM public.tab_cadastro WHERE id = ?";
+            PreparedStatement pst = conexao.prepareStatement(sql);
+            pst.setInt(1, id);
+            ResultSet result = pst.executeQuery();
+            if (result.next()) {
+                String nome = result.getString("nome");
+                Integer idade = result.getInt("idade");
+
+                cadastro = new Cadastro();
+                cadastro.setId(id);
+                cadastro.setNome(nome);
+                cadastro.setIdade(idade);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cadastro;
     }
 }
